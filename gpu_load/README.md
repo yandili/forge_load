@@ -33,10 +33,10 @@
 
 - GPU的核心是Streaming Multiprocessors（sm），数量成千上万。核心有三个概念
 - a hierarchy of thread groups, shared memories, and barrier synchronization 
-- ![GPU和CPU](http://upload-images.jianshu.io/upload_images/1956647-ceb9d0dc0b8e7447.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+- ![GPU和CPU](https://yandi.space/blog/2018-11-07-gpu-load/assets/1240.png)
 
 - hierachy of thread groups是说，计算任务都是按照矩阵的格式思考。sm的排列可以理解是矩阵，一个子矩阵叫grid，grid的行叫block，具体的元素是thread。总的计算资源占用就是从大的矩阵里规划出来的子矩阵中的所有thread。这个比例基本就对应着GPU的利用率。
-- ![Grid](http://upload-images.jianshu.io/upload_images/1956647-90d2c2d4078c9c09.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+- ![Grid](https://yandi.space/blog/2018-11-07-gpu-load/assets/1240-20220111114417918.png)
 - shared memories是说，block内部的几个thread，在计算的时候是有一个内部高速cache，如果好几个thread要重复读同一条数据，那最好在算法里把这几个sm放到一个block里。这个我也没仔细看，有个矩阵乘法运算的例子，再补充。
 - barrier synchronization是说，block内部的几个thread，是可以等待一起完成的？也没仔细看。
 
@@ -178,7 +178,7 @@ Run for 10s with load 0.0 and multiplier 7430.08370688
 
 最终负载会稳定在50%左右，内存占用为110MB。
 
-![image-20181107204631853.png](https://upload-images.jianshu.io/upload_images/1956647-f37f036a760414e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image-20181107204631853.png](https://yandi.space/blog/2018-11-07-gpu-load/assets/1240-20220111114429395.png)
 
 
 ## 4. 部署
